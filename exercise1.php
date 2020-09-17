@@ -17,10 +17,10 @@ class Beverage
 
     public function getInfo(): string
     {
-        return "This beverage is $this->temperature and $this->color.";
+        return "€ This beverage is $this->temperature and $this->color.";
     }
 }
 
 $cola = new Beverage('black', 4);
-echo $cola->temperature;
+echo $cola->price;
 echo $cola->getInfo();
