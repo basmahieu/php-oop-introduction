@@ -2,14 +2,28 @@
 
 declare(strict_types=1);
 
+
+
+// Copy the classes of exercise 2. change the properties to private.
+// Make a const barname with the value 'Het Vervolg'.
+// create a function in beverage and use the constant.
+// Do the same in the beer class
+// print the output of these functions on the screen.
+// Make sure that every print is on a new line.
+
+
+
+// EXERCISE ONE
 class Beverage
 {
+    const BARNAME = 'Marimain';
+
     protected $color;
     protected $price;
     protected $temperature;
     protected $name;
 
-    public function __construct(string $color, float $price, string $temperature, string $name)
+    public function __construct(string $color, float $price, string $temperature = 'cold', string $name)
     {
         $this->color       = $color;
         $this->price       = $price;
@@ -20,6 +34,11 @@ class Beverage
     public function getInfo(): string
     {
         return 'The <b>' . $this->name . '</b> is <b>' . $this->temperature . '</b> and <b>' . $this->color . '</b></br>';
+    }
+
+    public function getBar(): string
+    {
+        return 'The <b>' . $this->name . '</b>  has been ordered at <b>' . self::BARNAME . '</b> .</br>';
     }
 
     public function getColor(): string
@@ -33,26 +52,13 @@ class Beverage
 
         return $this;
     }
-
-    public function getTemperature(): string
-    {
-        return $this->temperature;
-    }
-
-
-    public function setTemperature($temperature)
-    {
-        $this->temperature = $temperature;
-
-        return $this;
-    }
 }
 
 class Beer extends Beverage
 {
     private $alcoholpercentage;
 
-    public function __construct(string $color, float $price, string $temperature, string $name, float $alcoholpercentage)
+    public function __construct(string $color, float $price, string $temperature = 'cold', string $name, float $alcoholpercentage)
     {
         $this->color       = $color;
         $this->price       = $price;
@@ -70,42 +76,13 @@ class Beer extends Beverage
     {
         return 'Hi, I\'m <b>' . $this->name . '</b> and have an alcohol percentage of <b>' . $this->alcoholpercentage . '%</b>. I\'m <b>' . $this->color . '</b> in color.</br>';
     }
-
-
-    public function getName()
-    {
-        return $this->name;
-    }
-
-
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
 }
 
-$duvel = new Beer('blond', 3.50, 'cold', 'duvel', 8.5);
-$guldenDraak = new beer('redish', 4, 'cold', 'Gulden Draak', 10.5);
+$guldenDraak = new Beer('blond', 3.50, 'cold', 'Gulden Draak', 8.5);
 
-// Duvel
-echo '<h3>Duvel</h3>';
-echo ($duvel->getInfo());
-$duvel->setColor('light');
-echo ($duvel->getInfo());
-echo ($duvel->beerInfo());
-echo ($duvel->getAlcoholPercentage());
-echo '</br>';
-
-// Gulden Draak Test
-echo '<h3>Gulden Draak</h3>';
 echo ($guldenDraak->getInfo());
-$guldenDraak->setColor('amber');
-echo ($guldenDraak->getInfo());
-$guldenDraak->setName('New Gulden Dragon');
-$guldenDraak->setColor('green');
-$guldenDraak->setTemperature('hot');
+$guldenDraak->setColor('light');
 echo ($guldenDraak->getInfo());
 echo ($guldenDraak->beerInfo());
+echo ($guldenDraak->getBar());
 echo ($guldenDraak->getAlcoholPercentage());
